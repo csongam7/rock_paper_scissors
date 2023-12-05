@@ -10,8 +10,32 @@ const scissorButton = document.querySelector("#Scissor");
 const buttons = document.querySelectorAll(".button");
 const roundButton = document.querySelector('#roundButton');
 
+
+
+
 roundButton.addEventListener("click", function() {
     gameIsOn = true;
+    
+    const mainScoreboard = document.createElement('div');
+    
+    const playersScoreboard = document.createElement('div');
+    const playersName = document.createElement('span');
+    playersName.innerText = 'Player\s score:';
+    const playersScore = document.createElement('span');
+    
+    playersScoreboard.appendChild(playersScore);
+    playersScoreboard.appendChild(playersName);
+    mainScoreboard.appendChild(playersScoreboard);
+
+    const computersScoreboard = document.createElement('div');
+    const computersName = document.createElement('span');
+    computersName.innerText = 'Computer\'s score:';
+    const computersScore = document.createElement('span');
+   
+    computersScoreboard.appendChild(computersScore);
+    computersScoreboard.appendChild(computersName);
+    mainScoreboard.appendChild(computersScoreboard);
+    document.body.appendChild(mainScoreboard);
 });
 
     buttons.forEach((button) =>
@@ -75,18 +99,20 @@ function checkWhoWon(didIwin, computersChoice){
     }
 };
 
+
 function gameCounter(whoScored){
-    
+
     if (whoScored == "Player"){
         playerScore ++;
+        playerScore.innerText = playerScore;
     }
     else if (whoScored == "Computer"){
         computerScore ++;
+        computerScore.innerText += computerScore;
     }
     
-    if (playerScore < 3 && computerScore < 3){
-        alert(`Current score: Player:${playerScore} - Computer:${computerScore}`)
-        return
+    if (playerScore + computerScore < 5){
+        return;
     }
     
     if (playerScore > computerScore){
@@ -97,5 +123,8 @@ function gameCounter(whoScored){
     }
     playerScore = 0;
     computerScore = 0;
+    playerScoreDisplay.innerText = playerScore;
+    computerScoreDisplay.innerText = computerScore;
     gameIsOn = false;
+
 }
