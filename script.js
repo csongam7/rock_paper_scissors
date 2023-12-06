@@ -16,24 +16,31 @@ const roundButton = document.querySelector('#roundButton');
 roundButton.addEventListener("click", function() {
     gameIsOn = true;
     
+    //initialize the socreboard when the player wants to play a 5 round game againts the computer
+
     const mainScoreboard = document.createElement('div');
     
+    //initialize player's part of the scoreboard
     const playersScoreboard = document.createElement('div');
     const playersName = document.createElement('span');
     playersName.innerText = 'Player\s score:';
     const playersScore = document.createElement('span');
+    playersScore.id = 'playersScore';
     
-    playersScoreboard.appendChild(playersScore);
     playersScoreboard.appendChild(playersName);
+    playersScoreboard.appendChild(playersScore);
     mainScoreboard.appendChild(playersScoreboard);
 
+    //initialize computer's part of the socreboard
     const computersScoreboard = document.createElement('div');
     const computersName = document.createElement('span');
     computersName.innerText = 'Computer\'s score:';
     const computersScore = document.createElement('span');
+    computersScore.id = "computersScore";
    
-    computersScoreboard.appendChild(computersScore);
+    //adding then to the dom
     computersScoreboard.appendChild(computersName);
+    computersScoreboard.appendChild(computersScore);
     mainScoreboard.appendChild(computersScoreboard);
     document.body.appendChild(mainScoreboard);
 });
@@ -81,13 +88,13 @@ roundButton.addEventListener("click", function() {
         )
     )
 
-/* After his choice make the computer choose randomly of the same 3*/
+// After his choice make the computer choose randomly of the same 3
 function getComputerChoice(){
     const choices = ["Rock", "Paper", "Scissor"];
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
     return computerChoice;
 }
-/*Alert the user the result.*/
+//Alert the user the result.
 function checkWhoWon(didIwin, computersChoice){
     if (didIwin){
         alert(`You are the winner the computer has choosen ${computersChoice}`);
@@ -104,11 +111,11 @@ function gameCounter(whoScored){
 
     if (whoScored == "Player"){
         playerScore ++;
-        playerScore.innerText = playerScore;
+        document.querySelector('#playersScore').innerText = playerScore;
     }
     else if (whoScored == "Computer"){
         computerScore ++;
-        computerScore.innerText += computerScore;
+        document.querySelector('#computersScore').innerText = computerScore;
     }
     
     if (playerScore + computerScore < 5){
@@ -121,10 +128,18 @@ function gameCounter(whoScored){
     else if (computerScore > playerScore){
         alert(`You have been beaten by the computer in Rock Paper Scissor! The final score is: Player:${playerScore} - Computer:${computerScore}`)
     }
-    playerScore = 0;
-    computerScore = 0;
-    playerScoreDisplay.innerText = playerScore;
-    computerScoreDisplay.innerText = computerScore;
-    gameIsOn = false;
+    
+    
+    setbackToDefault();
+
+    function setbackToDefault(){
+        playerScore = 0;
+        computerScore = 0;
+        playerScoreDisplay.innerText = playerScore;
+        computerScoreDisplay.innerText = computerScore;
+        gameIsOn = false;
+    }
+
+    
 
 }
