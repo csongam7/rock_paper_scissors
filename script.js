@@ -9,6 +9,7 @@ const paperButton = document.querySelector("#Paper");
 const scissorButton = document.querySelector("#Scissor");
 const buttons = document.querySelectorAll(".button");
 const roundButton = document.querySelector('#roundButton');
+const messageToThePlayer = document.querySelector('#message_to_the_player');
 
 
 
@@ -42,6 +43,7 @@ roundButton.addEventListener("click", function() {
     computersScoreboard.appendChild(computersName);
     computersScoreboard.appendChild(computersScore);
     mainScoreboard.appendChild(computersScoreboard);
+    mainScoreboard.id = "main_scoreboard";
     document.body.appendChild(mainScoreboard);
 });
 
@@ -97,11 +99,13 @@ function getComputerChoice(){
 //Alert the user the result.
 function checkWhoWon(didIwin, computersChoice){
     if (didIwin){
-        alert(`You are the winner the computer has choosen ${computersChoice}`);
+        //alert(`You are the winner the computer has choosen ${computersChoice}`);
+        messageToThePlayer.innerText = (`You are the winner the computer has choosen ${computersChoice}`);
         return "Player";
     }
     else {
-        alert(`You have been beaten by the computer whose pick was ${computersChoice}`);
+        //alert(`You have been beaten by the computer whose pick was ${computersChoice}`);
+        messageToThePlayer.innerText = (`You have been beaten by the computer whose pick was ${computersChoice}`);
         return "Computer";
     }
 };
@@ -130,14 +134,15 @@ function gameCounter(whoScored){
     }
     
     
+    //makes the changing values go back to the default one adter the 5 round is over
     setbackToDefault();
 
     function setbackToDefault(){
         playerScore = 0;
         computerScore = 0;
-        playerScoreDisplay.innerText = playerScore;
-        computerScoreDisplay.innerText = computerScore;
         gameIsOn = false;
+        document.querySelector('#main_scoreboard').innerHTML = '';
+        document.querySelector('#message_to_the_player').innerText = '';
     }
 
     
