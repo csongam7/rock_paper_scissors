@@ -5,26 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <p>Please press one of the 3 buttons</p>
-    <div>
-      <button class="button">Rock</button>
-      <button class="button">Paper</button>
-      <button class="button">Scissor</button>
+    <p>Pick your weapon:</p>
+    <div id="buttons">
+      <button class="button" id="rock"><img class="symbol" src="/images/rock.png" alt="rock"></button>
+      <button class="button" id="paper"><img class="symbol" src="/images/paper.png" alt="paper"></button>
+      <button class="button" id="scissor"><img class="symbol" src="/images/scissor.png" alt="scissor"></button>
     </div>
     <button id="roundButton">Play a 5 round game</button>
     <span id="message_to_the_player"></span>
-    <!--<div id="scoreboard">
-      <div class="score" id="player">
-        <span>Your score:</span>
-        <span id="player_score"></span>
+    </div>
+    <div id="main_scoreboard">
+      <div id=players_scoreboard>
+        <span id="players_score">Player's score:</span>
       </div>
-      <div class="score" id="computer">
+      <div id="computers_scoreboard">
         <span>Computer's score:</span>
-        <span id="computer_score"></span>
-      </div> 
-    -->
+        <span id="computers_score"></span>
+      </div>
+    </div>
+    <div id="battlefield">
+      <div class="side" id="players_choice">
+        <span>Your pick:</span>
+        <div id="players_score_container">
+          <span id="players_score_counter"></span>
+          <img class="smaller_symbol" id='players_symbol' src="/images/question_mark.png" alt="the symbol of the player's choice">
+        </div>
+      </div>
+      <div class="side" id="computers_choice">
+        <span>Computer's pick:</span>
+        <div id="computers_score_container">
+          <img class="smaller_symbol" id='computers_symbol' src="/images/question_mark.png" alt="the symbol of the computer's random choice">
+          <span id="computers_score_counter"></span> 
+        </div>
+      </div>
     </div>
   </body>
   <script src="./script.js"></script>
